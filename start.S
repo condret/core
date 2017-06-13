@@ -19,12 +19,12 @@
 // sichtbar)
 .global _start
 _start:
-	// Stack initialisieren
-	mov esp, kernel_stack
-
 	// C-Code aufrufen
 	// GAS is a bitch
 .att_syntax noprefix
+	// Stack initialisieren
+	mov $kernel_stack, esp
+
 	push $_stop
 	push $init
 .intel_syntax noprefix

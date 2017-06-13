@@ -19,11 +19,6 @@ void init_keyboard ()
 	keyboard_init_done = true;
 }
 
-void kputc_wrap (char c) {
-	kputc (c);
-//	asm volatile ("cli;hlt");
-}
-
 void keyboard_handler (CpuState *cpu)
 {
 	static ut16 prev;
@@ -54,8 +49,7 @@ void keyboard_handler (CpuState *cpu)
 	} else if (scancode == 0xe1) {
 		e1 = 1;
 	} else if (!breakcode) {
-		kputc ('x');
-		kputc_wrap ('y');
+		kputs ("A key got pressed");
 	} else {
 		breakcode = false;
 	}
